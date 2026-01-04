@@ -17,7 +17,7 @@ FAST2SMS_URL = "https://www.fast2sms.com/dev/bulkV2"
 
 # -------------------------------------
 # CORE SMS FUNCTION
-# -------------------------------------------------
+# -------------------
 def send_sms(shg_id, member_id, mobile, message):
     """
     Send SMS using Fast2SMS and log result.
