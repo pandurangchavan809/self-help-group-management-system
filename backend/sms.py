@@ -15,7 +15,7 @@ load_dotenv()
 FAST2SMS_API_KEY = os.getenv("FAST2SMS_API_KEY")
 FAST2SMS_URL = "https://www.fast2sms.com/dev/bulkV2"
 
-# -------------------------------------------------
+# -------------------------------------
 # CORE SMS FUNCTION
 # -------------------------------------------------
 def send_sms(shg_id, member_id, mobile, message):
