@@ -95,7 +95,7 @@ def repay_loan(loan_id, amount, payment_type):
     conn = get_db_connection()
     cur = conn.cursor()
 
-    # 1️⃣ Record repayment
+    # Record repayment
     cur.execute("""
         INSERT INTO loan_payments (
             loan_id, amount, payment_type, payment_date
@@ -103,7 +103,7 @@ def repay_loan(loan_id, amount, payment_type):
         VALUES (%s, %s, %s, CURDATE())
     """, (loan_id, amount, payment_type))
 
-    # 2️⃣ Log transaction
+    # Log transaction
     cur.execute("""
         INSERT INTO transactions (
             shg_id,
@@ -126,7 +126,7 @@ def repay_loan(loan_id, amount, payment_type):
     cur.close()
     conn.close()
 
-    # 3️⃣ Auto-close loan if principal fully paid
+    # Auto-close loan if principal fully paid
     close_loan_if_paid(loan_id)
 
 def update_member(member_id, first_name, last_name, mobile, monthly_deposit):

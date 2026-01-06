@@ -1,10 +1,3 @@
-"""
-pdf/generator.py
-----------------
-Generate clean, audit-ready SHG PDF reports.
-NO Streamlit code here.
-"""
-
 from reportlab.platypus import (
     SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image
 )
@@ -18,10 +11,8 @@ import tempfile
 import os
 from datetime import datetime
 
-
-# -------------------------------------------------
 # MAIN PDF GENERATOR (FINAL)
-# -------------------------------------------------
+
 def generate_shg_report(
     file_path,
     shg_name,
@@ -36,7 +27,7 @@ def generate_shg_report(
     Generates a complete SHG PDF report.
     """
 
-    # ------------------ PDF SETUP ------------------
+    # PDF SETUP
     doc = SimpleDocTemplate(
         file_path,
         pagesize=A4,
@@ -49,7 +40,7 @@ def generate_shg_report(
     styles = getSampleStyleSheet()
     elements = []
 
-    # ------------------ HEADER ------------------
+    # HEADER
     elements.append(Paragraph(
         "<b>MAHILA BACHAT GAT REPORT</b>",
         styles["Title"]
@@ -69,7 +60,7 @@ def generate_shg_report(
     ))
     elements.append(Spacer(1, 20))
 
-    # ------------------ SUMMARY TABLE ------------------
+    # SUMMARY TABLE
     elements.append(Paragraph("<b>Financial Summary</b>", styles["Heading2"]))
     elements.append(Spacer(1, 8))
 
@@ -92,7 +83,7 @@ def generate_shg_report(
     elements.append(summary_table)
     elements.append(Spacer(1, 24))
 
-    # ------------------ PIE CHART ------------------
+    # PIE CHART
     elements.append(Paragraph("<b>Financial Overview</b>", styles["Heading2"]))
     elements.append(Spacer(1, 10))
 
@@ -112,7 +103,7 @@ def generate_shg_report(
     elements.append(Image(tmp_img.name, width=3.5 * inch, height=3.5 * inch))
     elements.append(Spacer(1, 24))
 
-    # ------------------ MEMBER SUMMARY ------------------
+    # MEMBER SUMMARY
     elements.append(Paragraph("<b>Member-wise Summary</b>", styles["Heading2"]))
     elements.append(Spacer(1, 8))
 
@@ -136,7 +127,7 @@ def generate_shg_report(
     elements.append(member_table)
     elements.append(Spacer(1, 24))
 
-    # ------------------ LOAN SUMMARY ------------------
+    # LOAN SUMMARY
     elements.append(Paragraph("<b>Loan Summary</b>", styles["Heading2"]))
     elements.append(Spacer(1, 8))
 
@@ -159,14 +150,14 @@ def generate_shg_report(
     elements.append(loan_table)
     elements.append(Spacer(1, 30))
 
-    # ------------------ FOOTER ------------------
+    # FOOTER
     elements.append(Paragraph(
         "<i>This report is system generated. "
         "No data can be altered manually.</i>",
         styles["Normal"]
     ))
 
-    # ------------------ BUILD ------------------
+    # BUILD
     doc.build(elements)
 
     # cleanup temp image
