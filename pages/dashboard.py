@@ -1,9 +1,8 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 
-# -------------------------------------------------
 # 1. SESSION SHIELD
-# -------------------------------------------------
+
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
@@ -18,9 +17,8 @@ if not shg_id:
     st.switch_page("app.py")
     st.stop()
 
-# -------------------------------------------------
 # 2. DATA IMPORTS
-# -------------------------------------------------
+
 from backend.calculations import (
     get_total_savings,
     get_total_loan_given,
@@ -51,9 +49,8 @@ wallet_balance = get_wallet_balance(shg_id)
 shg_name = shg_details[0] if shg_details else "SHG"
 shg_number = shg_details[1] if shg_details else "N/A"
 
-# -------------------------------------------------
 # 3. LANGUAGE
-# -------------------------------------------------
+
 if "lang" not in st.session_state:
     st.session_state.lang = "मराठी"
 
@@ -71,9 +68,8 @@ LANG = {
 }
 t = LANG[st.session_state.lang]
 
-# -------------------------------------------------
 # 4. COMPACT CSS
-# -------------------------------------------------
+
 st.markdown("""
 <style>
 html, body, [class*="css"] {
@@ -107,9 +103,8 @@ div[data-testid="stMetricLabel"] {
 </style>
 """, unsafe_allow_html=True)
 
-# -------------------------------------------------
 # 5. HEADER + LANGUAGE
-# -------------------------------------------------
+
 h1, h2 = st.columns([4, 1])
 with h2:
     st.session_state.lang = st.selectbox(
@@ -131,9 +126,8 @@ with title_r:
         </div>
     """, unsafe_allow_html=True)
 
-# -------------------------------------------------
 # 6. METRICS (ONE ROW)
-# -------------------------------------------------
+
 m1, m2, m3, m4, m5 = st.columns(5)
 m1.metric(t["sav"], f"₹{total_savings:,}")
 m2.metric(t["loan"], f"₹{total_loan_given:,}")
@@ -143,9 +137,8 @@ m5.metric(t["loans"], active_loans)
 
 st.divider()
 
-# -------------------------------------------------
 # 7. SAME DONUT GRAPH (UNCHANGED STYLE)
-# -------------------------------------------------
+
 chart_l, chart_r = st.columns([1.2, 1])
 
 with chart_l:
@@ -204,12 +197,10 @@ with chart_r:
         height=400
     )
 
-
 st.divider()
 
-# -------------------------------------------------
 # 8. NAVIGATION
-# -------------------------------------------------
+
 n1, n2, n3 = st.columns(3)
 with n1:
     if role == "president":
