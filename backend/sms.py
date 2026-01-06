@@ -15,9 +15,8 @@ load_dotenv()
 FAST2SMS_API_KEY = os.getenv("FAST2SMS_API_KEY")
 FAST2SMS_URL = "https://www.fast2sms.com/dev/bulkV2"
 
-# -------------------------------------
 # CORE SMS FUNCTION
-# -------------------
+
 def send_sms(shg_id, member_id, mobile, message):
     """
     Send SMS using Fast2SMS and log result.
@@ -50,10 +49,8 @@ def send_sms(shg_id, member_id, mobile, message):
 
     return status == "sent"
 
-
-# -------------------------------------------------
 # SMS LOGGING
-# -------------------------------------------------
+
 def log_sms(shg_id, member_id, mobile, message, status):
     conn = get_db_connection()
     cur = conn.cursor()
@@ -69,10 +66,8 @@ def log_sms(shg_id, member_id, mobile, message, status):
     cur.close()
     conn.close()
 
-
-# -------------------------------------------------
 # MESSAGE TEMPLATES (FIXED)
-# -------------------------------------------------
+
 def deposit_sms(member_name, amount, balance):
     return f"""
 महिला बचत गट

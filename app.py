@@ -7,9 +7,8 @@ from backend.auth import (
     get_shg_id
 )
 
-# -------------------------------------------------
 # 1. PAGE CONFIG
-# -------------------------------------------------
+
 st.set_page_config(
     page_title="Bachat Gat Digital",
     page_icon="🏦",
@@ -17,9 +16,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# -------------------------------------------------
 # 2. SESSION STATE INITIALIZATION (CRITICAL FIX)
-# -------------------------------------------------
+
 # This prevents the "AttributeError" crash
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
@@ -32,9 +30,8 @@ if "shg_no" not in st.session_state:
 if "member_id" not in st.session_state:
     st.session_state.member_id = None
 
-# -------------------------------------------------
 # 3. DARK THEME CSS (WORLD CLASS UI)
-# -------------------------------------------------
+
 st.markdown("""
     <style>
     /* 1. Main Background - Deep Dark Blue/Black Gradient */
@@ -107,9 +104,9 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# -------------------------------------------------
+
 # 4. LANGUAGE DICTIONARY
-# -------------------------------------------------
+
 LANG = {
     "मराठी": {
         "title": "डिजिटल बचत गट",
@@ -151,7 +148,7 @@ LANG = {
     }
 }
 
-# -------------------------------------------------
+
 # 5. UI LAYOUT
 
 col_l, col_r = st.columns([2, 1])
