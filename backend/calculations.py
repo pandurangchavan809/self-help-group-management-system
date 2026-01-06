@@ -1,30 +1,10 @@
-"""
-backend/calculations.py
------------------------
-All financial calculations live here.
-NO UI. NO Streamlit.
-
-Covers:
-- Wallet balance
-- Loan interest
-- Monthly payable
-- Loan outstanding
-- Loan close check
-"""
-
 from backend.db import get_db_connection
 
-
-# -------------------------------------------------
 # BASIC CONSTANTS
-# -------------------------------------------------
 DEFAULT_MONTHLY_DEPOSIT = 500
 DEFAULT_INTEREST_RATE = 2  # percent
 
-
-# -------------------------------------------------
 # WALLET & SUMMARY
-# -------------------------------------------------
 
 def get_total_savings(shg_id: int) -> int:
     conn = get_db_connection()
@@ -58,10 +38,7 @@ def get_wallet_balance(shg_id: int) -> int:
     """
     return get_total_savings(shg_id) - get_total_loan_given(shg_id)
 
-
-# -------------------------------------------------
 # LOAN CALCULATIONS
-# -------------------------------------------------
 
 def calculate_monthly_interest(
     loan_amount: int,

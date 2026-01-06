@@ -1,23 +1,6 @@
-"""
-backend/auth.py
-----------------
-All authentication & SHG identity logic lives here.
-
-Responsibilities:
-- President login
-- Member login (view only)
-- SHG creation (unique, no overlap)
-- SHG ID fetch
-
-NO Streamlit code here.
-"""
-
 from backend.db import get_db_connection
 
-
-# -------------------------------------------------
 # SHG HELPERS
-# -------------------------------------------------
 
 def shg_exists(shg_number: str) -> bool:
     """Check if SHG group number already exists"""
@@ -50,10 +33,7 @@ def get_shg_id(shg_number: str):
     conn.close()
     return row[0] if row else None
 
-
-# -------------------------------------------------
 # PRESIDENT AUTH
-# -------------------------------------------------
 
 def president_login(shg_number: str, username: str, password: str) -> bool:
     """
@@ -146,10 +126,7 @@ def change_president_password(
     conn.close()
     return updated
 
-
-# -------------------------------------------------
 # MEMBER AUTH (VIEW ONLY)
-# -------------------------------------------------
 
 def member_login(
     shg_number: str,

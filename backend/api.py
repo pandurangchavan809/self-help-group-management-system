@@ -1,17 +1,8 @@
-"""
-backend/api.py
---------------
-Service-layer functions used by Streamlit pages.
-No UI code here.
-"""
-
 from backend.db import get_db_connection
 from backend.calculations import close_loan_if_paid
 
-
-# -------------------------------------------------
 # MEMBER MANAGEMENT
-# -------------------------------------------------
+
 def add_member(shg_id, first_name, last_name, mobile, monthly_deposit=500):
     conn = get_db_connection()
     cur = conn.cursor()
@@ -27,15 +18,13 @@ def add_member(shg_id, first_name, last_name, mobile, monthly_deposit=500):
     cur.close()
     conn.close()
 
-
-# -------------------------------------------------
 # DEPOSIT
-# -------------------------------------------------
+
 def add_deposit(shg_id, member_id, amount, month, year):
     conn = get_db_connection()
     cur = conn.cursor()
 
-    # 1️⃣ Save deposit
+    # Save deposit
     cur.execute("""
         INSERT INTO deposits (
             shg_id, member_id, amount, deposit_month, deposit_year
@@ -43,7 +32,7 @@ def add_deposit(shg_id, member_id, amount, month, year):
         VALUES (%s, %s, %s, %s, %s)
     """, (shg_id, member_id, amount, month, year))
 
-    # 2️⃣ Log transaction (PASSBOOK ENTRY)
+    # Log transaction (PASSBOOK ENTRY)
     cur.execute("""
         INSERT INTO transactions (
             shg_id, member_id, txn_type, amount, created_by
@@ -55,15 +44,13 @@ def add_deposit(shg_id, member_id, amount, month, year):
     cur.close()
     conn.close()
 
-
-# -------------------------------------------------
 # LOANS
-# -------------------------------------------------
+
 def give_loan(shg_id, member_id, loan_amount, interest_rate, remarks=None):
     conn = get_db_connection()
     cur = conn.cursor()
 
-    # 1️⃣ Create loan
+    # Create loan
     cur.execute("""
         INSERT INTO loans (
             shg_id, member_id, loan_amount, interest_rate, loan_date, remarks
@@ -73,7 +60,7 @@ def give_loan(shg_id, member_id, loan_amount, interest_rate, remarks=None):
 
     loan_id = cur.lastrowid
 
-    # 2️⃣ Log transaction
+    # Log transaction
     cur.execute("""
         INSERT INTO transactions (
             shg_id, member_id, txn_type, amount, created_by
@@ -87,10 +74,8 @@ def give_loan(shg_id, member_id, loan_amount, interest_rate, remarks=None):
 
     return loan_id
 
-
-# -------------------------------------------------
 # LOAN REPAYMENT
-# -------------------------------------------------
+
 def repay_loan(loan_id, amount, payment_type):
     conn = get_db_connection()
     cur = conn.cursor()
