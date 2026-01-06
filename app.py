@@ -153,7 +153,7 @@ LANG = {
 
 # -------------------------------------------------
 # 5. UI LAYOUT
-# -------------------------------------------------
+
 col_l, col_r = st.columns([2, 1])
 with col_r:
     # Custom styled selectbox is hard, standard one is okay
