@@ -330,7 +330,7 @@ with tab6:
 
         st.write("")
 
-        # -------- ACTION BUTTONS --------
+        # ACTION BUTTONS 
         c1, c2, c3 = st.columns(3)
 
         with c1:
