@@ -103,7 +103,6 @@ The application:
 ---
 
 ## Project Structure
-## Project Structure
 
 ```text
 self-help-group-management/
@@ -124,6 +123,8 @@ self-help-group-management/
 ├── README.md
 └── .env                    # Environment variables
 
+```
+---
 ## Installation
 
 ### 1. Clone the repository
