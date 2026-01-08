@@ -103,26 +103,23 @@ The application:
 ---
 
 ## Project Structure
+## Project Structure
 
+```text
 self-help-group-management/
-│
 ├── app.py                  # Login and entry point
-│
 ├── pages/
 │   ├── dashboard.py        # Dashboard view
 │   ├── members.py          # Member, deposit, loan management
 │   └── reports.py          # Reports and messaging
-│
 ├── backend/
 │   ├── db.py               # Database connection
 │   ├── auth.py             # Authentication logic
 │   ├── api.py              # Service-layer functions
 │   ├── calculations.py     # Financial calculations
 │   └── sms.py              # SMS helpers
-│
 ├── pdf/
 │   └── generator.py        # PDF report generation
-│
 ├── requirements.txt
 ├── README.md
 └── .env                    # Environment variables
