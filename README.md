@@ -166,7 +166,6 @@ streamlit run app.py
 - Suitable for low-end mobile and desktop devices
 
 ---
-
 ## Important Notes
 
 - This system does not handle real money
@@ -175,7 +174,6 @@ streamlit run app.py
 - Temporary files used during PDF generation are safely handled by the operating system (Windows compatible)
 
 ---
-
 ## License
 
 This project is provided for educational and community use.  
