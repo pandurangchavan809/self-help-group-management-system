@@ -132,7 +132,7 @@ m1, m2, m3, m4, m5 = st.columns(5)
 m1.metric(t["sav"], f"₹{total_savings:,}")
 m2.metric(t["loan"], f"₹{total_loan_given:,}")
 m3.metric(t["avail"], f"₹{wallet_balance:,}")
-m4.metric(t["members"], active_members)
+m4.metric(t["members"], active_members + 1)
 m5.metric(t["loans"], active_loans)
 
 st.divider()
